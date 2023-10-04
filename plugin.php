@@ -3,7 +3,7 @@
  * Plugin Name: Dev SMTP (DO NOT USE IN PRODUCTION)
  * Description: A plugin to send all emails through smtp server defined in wp-config.php for testing purposes. Provided by Timoshka Lab Inc. You can check your emails on <a href="http://127.0.0.1:8025/">Mailhog</a> if you are using Docker.
  * License: GPLv2 or later
- * Version: 1.0.1
+ * Version: 1.0.2
  */
 
 if (! defined( 'ABSPATH' )) die;
@@ -23,7 +23,7 @@ add_action('phpmailer_init', function ($phpmailer) {
         }
 
         $phpmailer->isSMTP();
-        $phpmailer->Host       = SMTP_HOST;
+        $phpmailer->Host       = gethostbyname(SMTP_HOST);
         $phpmailer->Port       = SMTP_PORT;
         $phpmailer->From       = SMTP_FROM;
         $phpmailer->FromName   = SMTP_NAME;
